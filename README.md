@@ -24,24 +24,35 @@ ALTER TABLE user ADD nickname TEXT;
 - 「データを分散して保存する場合に便利」
     - RDBでもできるよ！例えば・・・
 
-**なにより、表形式でスキーマかっちりの方がわかりやすくないですか？**
+**なにより、表形式でスキーマかっちりの方がわかりやすくない？**
+
 というわけで、調査してみた。
 
 
-## ACIDの観点からの評価
+## ACIDの観点
+トランザクションの概念が無いスキーマレスDB
 <table border=1>
-<tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
-<tr><td>atomicity（原子性）</td><td></td><td></td></tr>
-<tr><td>consistency（一貫性）：稼働率の高さ</td><td></td><td></td></tr>
-<tr><td>isolation（独立性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
-<tr><td>durability（永続性）：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
+<tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
+<tr><td>atomicity（原子性）</td><td>○</td><td>×</td></tr>
+<tr><td>consistency（一貫性）</td><td>○</td><td>×</td></tr>
+<tr><td>isolation（独立性）</td><td>○</td><td>×</td></tr>
+<tr><td>durability（永続性）</td><td>○</td><td>×</td></tr>
 </table>
 
+- RDBでは、データ量やアクセス頻度の増大に伴い、ACID特性を維持するためのコストが無視できなくなる。→そうだ分散しよう。
+    - RDBでは「水平分割」（キーとなる値によってデータベースを分ける方法）や「垂直分割」（機能によってデータベースを分ける方法）ができるが、運用が難しい。
+- スキーマレスDBでは、BASEという考え方を取り入れ、consistency（一貫性）を維持するためのコストを抑えている。BASEは、不整合が発生することは滅多にないという考え方に基づいている。
+    -BA「Basically Available」
+        - 可用性を重視する。
+    -S「Soft-state」
+        - 状態の厳密性は追求しない。
+    -E「Eventually consistent」
+        - 最終的に一貫性のつじつまがあえばよい。
 
 
-## RASISの観点からの評価
+## RASISの観点
 <table border=1>
-<tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
+<tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
 <tr><td>Reliability（信頼性）：障害の発生しにくさ</td><td></td><td></td></tr>
 <tr><td>Availability（可用性）：稼働率の高さ</td><td></td><td></td></tr>
 <tr><td>Serviceability（保守性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
@@ -50,10 +61,10 @@ ALTER TABLE user ADD nickname TEXT;
 </table>
 
 
-## 分散の観点からの評価
+## 分散の観点
 
 <table border=1>
-<tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
+<tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
 <tr><td>分散化のコスト</td><td>×</td><td>◎</td></tr>
 <tr><td>負荷分散</td><td>△</td><td>◎</td></tr>
 <tr><td>高可用性</td><td>△</td><td>◎</td></tr>
