@@ -3,8 +3,9 @@
 
 - 「カラムを固定できない場合に便利」
     - RDBでもできるよ！
+
 ```
-    create table practice (data text);
+create table practice (data text);
 insert into practice (data) values ('{"user_id":1,"screen_name":"katty0324","age":23}');
 ```
 
