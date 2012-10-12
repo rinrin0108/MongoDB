@@ -5,8 +5,8 @@
     - RDBでもできるよ！
 
     ```
-    create table practice (data text);
-    insert into practice (data) values ('{"user_id":1,"screen_name":"katty0324","age":23}');
+create table practice (data text);
+insert into practice (data) values ('{"user_id":1,"screen_name":"katty0324","age":23}');
     ```
 
 - 「開発時などスキーマの変更が頻繁に行われる場合に便利」
