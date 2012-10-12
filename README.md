@@ -20,13 +20,24 @@ ALTER TABLE user ADD nickname TEXT;
 - 「データを分散しやすい」
     - RDBでも
 
+## ACIDの観点からの評価
+<table border=1>
+<tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
+<tr><td>atomicity（原子性）<br />トランザクションに含まれるタスクが全て実行されるか、あるいはまったく実行されないことを保証する性質</td><td></td><td></td></tr>
+<tr><td>consistency（一貫性）：稼働率の高さ</td><td></td><td></td></tr>
+<tr><td>isolation（独立性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
+<tr><td>durability（永続性）：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
+</table>
+
+
+
 ## RASISの観点からの評価
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
 <tr><td>Reliability（信頼性）：障害の発生しにくさ</td><td></td><td></td></tr>
 <tr><td>Availability（可用性）：稼働率の高さ</td><td></td><td></td></tr>
 <tr><td>Serviceability（保守性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
-<tr><td>Integrity（保全性・完全性：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
+<tr><td>Integrity（保全性・完全性）：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
 <tr><td>Security（機密性）：外部からの侵入・改ざんや機密漏洩の起きにくさ</td><td></td><td></td></tr>
 </table>
 
