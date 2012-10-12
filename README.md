@@ -21,11 +21,10 @@ INSERT INTO user(data) VALUES ('{"user_id":1,"screen_name":"rinrin0108","age":24
 ALTER TABLE user ADD nickname TEXT;
     ```
 
-- 「データを分散しやすい」
-    - RDBでも
+- 「データを分散して保存する場合に便利」
+    - RDBでもできるよ！例えば・・・
 
-素朴な疑問
-    : なにより、表形式でスキーマかっちりの方がわかりやすくないですか？
+*なにより、表形式でスキーマかっちりの方がわかりやすくないですか？*
 
 
 ## ACIDの観点からの評価
