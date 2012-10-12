@@ -32,14 +32,22 @@ ALTER TABLE user ADD nickname TEXT;
 トランザクションの概念が無いスキーマレスDB
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
-<tr><td>atomicity（原子性）</td><td>○</td><td>×</td></tr>
-<tr><td>consistency（一貫性）</td><td>○</td><td>×</td></tr>
-<tr><td>isolation（独立性）</td><td>○</td><td>×</td></tr>
-<tr><td>durability（永続性）</td><td>○</td><td>×</td></tr>
+<tr><td>atomicity（原子性）：トランザクション処理は全て実行されるか、まったく実行されない状態のいずれかで終わる</td><td>○</td><td>×</td></tr>
+<tr><td>consistency（一貫性）：トランザクション処理の前後でデータに矛盾を生じない</td><td>○</td><td>×</td></tr>
+<tr><td>isolation（独立性）：他のトランザクション処理から影響されない</td><td>○</td><td>×</td></tr>
+<tr><td>durability（永続性）：障害が発生しても更新結果は保持される</td><td>○</td><td>×</td></tr>
 </table>
 
-- RDBでは、データ量やアクセス頻度の増大に伴い、ACID特性を維持するためのコストが無視できなくなる。→そうだ分散しよう。
-    - RDBでは「水平分割」（キーとなる値によってデータベースを分ける方法）や「垂直分割」（機能によってデータベースを分ける方法）ができるが、運用が難しい。
+### ボトルネックにもなるACID特性
+- RDBでは、ACID特性が確保されるが、データ量やアクセス頻度の増大に伴ってACID特性を維持するためのコストが無視できなくなる。→そうだスケールアウト（分散）しよう。
+    - RDBでは「水平分割」（キーとなる値によってデータベースを分ける方法）や「垂直分割」（機能によってデータベースを分ける方法）ができるが、負荷分散や高可用性を低コストで実現することが困難。（レプリケーションやmemcachedも検索処理のスケールアウトには効果があるが、更新処理やテーブル結合のスケールアウトにはあまり効果がない）
+        - RDBサーバのスケールアップ（大型サーバへの載せ替え）
+        - DBのレプリケーションやシャード（パーティション）分割によるクラスタ構築
+        - 分散キャッシュ（Oracle RACやmemcachedなど）によるクラスタ構築
+- スキーマレスDBでは、ACID特性が確保されず、アプリケーション側でのフォローが必要。一方で、データ量やアクセス頻度の増大に伴ってデータストア全体をいくらでも多くのサーバにスケールアウト（分散）できる。
+    - スキーマレスDBでは、「水平分散」が低コストで実現可能。
+
+
 - スキーマレスDBでは、BASEという考え方を取り入れ、consistency（一貫性）を維持するためのコストを抑えている。BASEは、不整合が発生することは滅多にないという考え方に基づいている。
     - BA：Basically Available
         - 可用性を重視する。
@@ -70,3 +78,13 @@ ALTER TABLE user ADD nickname TEXT;
 <tr><td>複雑な検索や集計</td><td>◎</td><td>△</td></tr>
 <tr><td>トランザクション</td><td>◎</td><td>△</td></tr>
 </table>
+
+
+
+----
+## 参考資料
+- 分散Key-Valueストアの本命「Bigtable」
+    - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/01.html
+    - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/02.html
+    - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/03.html
+
