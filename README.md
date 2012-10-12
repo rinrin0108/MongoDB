@@ -4,13 +4,17 @@
 - 「カラムを固定できない場合に便利」
     - RDBでもできるよ！
 
-```
+    ```sql
 create table practice (data text);
-insert into practice (data) values ('{"user_id":1,"screen_name":"katty0324","age":23}');
-```
+INSERT INTO user(data) VALUES ('{"user_id":1,"screen_name":"rinrin0108","age":24}');
+    ```
 
 - 「開発時などスキーマの変更が頻繁に行われる場合に便利」
+    - RDBでもALTER TABLEするだけ！
 
+    ```
+ALTER TABLE user ADD nickname TEXT;
+    ```
 
 ## RASISの観点からの評価
 <table border=1>
