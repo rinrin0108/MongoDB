@@ -1,12 +1,16 @@
 ### 【丸の内MongoDB勉強会】 Lightning Talk by 林田敦
-# スキーマレスって本当にいいの？
+# ”スキーマレス”って本当にいいの？
 ----
+## みなさんはどう思いますか？
+- 「○○○○だからスキーマレス最高！」
+- 「××××だからスキーマレスやめられないとまらない！」
+
 ## よく耳にするお話
 - 「カラムを固定できない場合に便利」
     - RDBでもできるよ！例えば・・・
 
     ```sql
-create table practice (data text);
+CREATE TABLE user (data TEXT);
 INSERT INTO user(data) VALUES ('{"user_id":1,"screen_name":"rinrin0108","age":24}');
     ```
 
@@ -20,10 +24,14 @@ ALTER TABLE user ADD nickname TEXT;
 - 「データを分散しやすい」
     - RDBでも
 
+素朴な疑問
+    : なにより、表形式でスキーマかっちりの方がわかりやすくないですか？
+
+
 ## ACIDの観点からの評価
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレス</td></tr>
-<tr><td>atomicity（原子性）<br />トランザクションに含まれるタスクが全て実行されるか、あるいはまったく実行されないことを保証する性質</td><td></td><td></td></tr>
+<tr><td>atomicity（原子性）</td><td></td><td></td></tr>
 <tr><td>consistency（一貫性）：稼働率の高さ</td><td></td><td></td></tr>
 <tr><td>isolation（独立性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
 <tr><td>durability（永続性）：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
