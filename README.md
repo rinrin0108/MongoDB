@@ -1,8 +1,9 @@
 ### 【丸の内MongoDB勉強会】 Lightning Talk by 林田敦
 # スキーマレスって本当にいいの？
-
+----
+## よく耳にするお話
 - 「カラムを固定できない場合に便利」
-    - RDBでもできるよ！
+    - RDBでもできるよ！例えば・・・
 
     ```sql
 create table practice (data text);
@@ -10,9 +11,9 @@ INSERT INTO user(data) VALUES ('{"user_id":1,"screen_name":"rinrin0108","age":24
     ```
 
 - 「開発時などスキーマの変更が頻繁に行われる場合に便利」
-    - RDBでもALTER TABLEするだけ！
+    - RDBでもALTER TABLEするだけ！例えば・・・
 
-    ```
+    ```sql
 ALTER TABLE user ADD nickname TEXT;
     ```
 
