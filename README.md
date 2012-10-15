@@ -89,4 +89,7 @@ ALTER TABLE user ADD nickname TEXT;
     - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/01.html
     - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/02.html
     - http://www.atmarkit.co.jp/fjava/rensai4/bigtable01/03.html
-
+- CAP’è—, BASE‚Ì‚Ü‚Æ‚ßishmachid dot comj
+    - http://shmachid.com/database/135/
+- yohei-y:weblog
+    - http://yohei-y.blogspot.jp/search/label/base
