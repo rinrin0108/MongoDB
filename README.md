@@ -56,7 +56,7 @@ ALTER TABLE user ADD nickname TEXT;
     - S：Soft-state
         - 状態の厳密性は追求しない。
     - E：Eventually consistent
-        - 最終的に一貫性のつじつまがあえばよい。
+        - 最終的に一貫性のつじつまがあえばよい。ある時点では更新されていないケースもある。
 
 
 ## RASISの観点
