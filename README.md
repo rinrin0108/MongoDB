@@ -59,14 +59,14 @@ ALTER TABLE user ADD nickname TEXT;
         - 最終的に一貫性のつじつまがあえばよい。ある時点では更新されていないケースもある。
 
 
-## RASISの観点
+## RASISの観点（スケールアウトした場合）
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
-<tr><td>Reliability（信頼性）：障害の発生しにくさ</td><td></td><td></td></tr>
-<tr><td>Availability（可用性）：稼働率の高さ</td><td></td><td></td></tr>
-<tr><td>Serviceability（保守性）：障害復旧やメンテナンスのし易さ</td><td></td><td></td></tr>
-<tr><td>Integrity（保全性・完全性）：データの破壊や不整合のおきにくさ</td><td></td><td></td></tr>
-<tr><td>Security（機密性）：外部からの侵入・改ざんや機密漏洩の起きにくさ</td><td></td><td></td></tr>
+<tr><td>Reliability（信頼性）：障害の発生しにくさ</td><td>○</td><td>○</td></tr>
+<tr><td>Availability（可用性）：稼働率の高さ</td><td>○</td><td>○</td></tr>
+<tr><td>Serviceability（保守性）：障害復旧やメンテナンスのし易さ</td>△<td></td><td>○</td></tr>
+<tr><td>Integrity（保全性・完全性）：データの破壊や不整合のおきにくさ</td><td>○</td><td>×</td></tr>
+<tr><td>Security（機密性）：外部からの侵入・改ざんや機密漏洩の起きにくさ</td><td>-</td><td>-</td></tr>
 </table>
 
 
@@ -74,11 +74,11 @@ ALTER TABLE user ADD nickname TEXT;
 
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
-<tr><td>分散化のコスト</td><td>×</td><td>◎</td></tr>
-<tr><td>負荷分散</td><td>△</td><td>◎</td></tr>
-<tr><td>高可用性</td><td>△</td><td>◎</td></tr>
-<tr><td>複雑な検索や集計</td><td>◎</td><td>△</td></tr>
-<tr><td>トランザクション</td><td>◎</td><td>△</td></tr>
+<tr><td>分散化のコスト</td><td>×</td><td>○</td></tr>
+<tr><td>負荷分散</td><td>△</td><td>○</td></tr>
+<tr><td>高可用性</td><td>△</td><td>○</td></tr>
+<tr><td>複雑な検索や集計</td><td>○</td><td>△</td></tr>
+<tr><td>トランザクション</td><td>○</td><td>△</td></tr>
 </table>
 
 
