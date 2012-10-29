@@ -1,5 +1,5 @@
 ### 【丸の内MongoDB勉強会】 Lightning Talk by 林田敦
-# ”スキーマレス”って本当にいいの？
+# ”スキーマレスDB”って本当にいいの？
 ----
 ## みなさんはどう思いますか？
 - 「○○○○だからスキーマレス最高！」
@@ -59,27 +59,38 @@ ALTER TABLE user ADD nickname TEXT;
         - 最終的に一貫性のつじつまがあえばよい。ある時点では更新されていないケースもある。
 
 
-## RASISの観点（スケールアウトした場合）
-<table border=1>
-<tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
-<tr><td>Reliability（信頼性）：障害の発生しにくさ</td><td>○</td><td>○</td></tr>
-<tr><td>Availability（可用性）：稼働率の高さ</td><td>○</td><td>○</td></tr>
-<tr><td>Serviceability（保守性）：障害復旧やメンテナンスのし易さ</td>△<td></td><td>○</td></tr>
-<tr><td>Integrity（保全性・完全性）：データの破壊や不整合のおきにくさ</td><td>○</td><td>×</td></tr>
-<tr><td>Security（機密性）：外部からの侵入・改ざんや機密漏洩の起きにくさ</td><td>-</td><td>-</td></tr>
-</table>
-
-
 ## 分散の観点
 
 <table border=1>
 <tr><td></td><td>RDB</td><td>スキーマレスDB</td></tr>
-<tr><td>分散化のコスト</td><td>×</td><td>○</td></tr>
+<tr><td>分散化のコスト</td><td>×</td><td>◎</td></tr>
 <tr><td>負荷分散</td><td>△</td><td>○</td></tr>
-<tr><td>高可用性</td><td>△</td><td>○</td></tr>
+<tr><td>高可用性</td><td>△</td><td>◎</td></tr>
 <tr><td>複雑な検索や集計</td><td>○</td><td>△</td></tr>
 <tr><td>トランザクション</td><td>○</td><td>△</td></tr>
 </table>
+
+### キーワードは「スケーラビリティ」
+- RDBと比較して、スキーマレスDBは圧倒的にスケーラビリティが高い。
+    - シャーディング（データベースの分散運用）が容易
+        - オートシャーディング機能により、ダウンタイム無くスケールアウトが可能
+    - （フェールオーバーのための）レプリケーションが容易
+
+## 新しい技術との親和性
+- アジャイル
+    - RDB
+        - 厳密なスキーマ定義や動的なスケールアウトにコストがかかる
+    - スキーマレスDB
+        - スキーマやデータボリュームの変化に柔軟に対応可能
+- クラウド／ビッグデータ
+    - RDB
+        - スケールアウトに多大なコストがかかる
+    - スキーマレスDB
+        - 低コストでスケールアウトが可能
+
+## まとめ
+- スキーマレスDBなら、低コストでスケールアウトを伴うシステムを構築できる！
+    - ただし、一貫性（トランザクション）を保てない場合があるので注意が必要
 
 
 
@@ -93,3 +104,6 @@ ALTER TABLE user ADD nickname TEXT;
     - http://shmachid.com/database/135/
 - yohei-y:weblog
     - http://yohei-y.blogspot.jp/search/label/base
+- NoSQLを知る
+    - http://sssslide.com/www.slideshare.net/frsyuki/nosql-3213215
+
